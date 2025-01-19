@@ -21,9 +21,10 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
 
-    protected Task() { }
+    protected Task() {
+    }
 
-    // Błędem który zobaczyłem jest użycie "status" jako "this.status" problem, że on nie będzie miał nigdy miejsca
+    // Błędem który zobaczyłem jest użycie "status" jako "this.status" problem, że on nie będzie miał nigdy miejsca, zamieniłem je miejscami
     public void setStatus(TaskStatus status) {
         this.status = status;
     }
@@ -42,13 +43,12 @@ public class Task {
 
     public void setDescription(String description) {
         // tutaj linia była zakomentowana wydaje mi się że to był zabieg celowy lecz postanowiłem o tym wspomnieć w komentarzu
-            this.description = description;
+        this.description = description;
     }
 
 
-    // Tutaj klasa TaskStatus była prywatna i zostało to zmienione na Publiczne ponieważ otrzymanie statusu możemy rządać z zewnątrz a nie koniecznie tylko z samej klasy Task. Uważam to za błąd dlatego zmieniłem
-    // klasę na private
-    private TaskStatus getStatus() {
+    // Tutaj metoda była prywatna i zostało to zmienione na Publiczne ponieważ otrzymanie statusu możemy rządać z zewnątrz a nie koniecznie tylko z samej klasy Task.
+    public TaskStatus getStatus() {
         return status;
     }
 
@@ -59,8 +59,10 @@ public class Task {
         return Objects.equals(id, task.id) && Objects.equals(description, task.description) && status == task.status;
     }
 
+    // hashCode nie powinno zawsze zwracać 0. Bo nie ma wtedy sensu stosowania tej metody, ponieważ wtedy wszystkie wartości są sobie równe po porównaniu na podstawie hashCode.
+    // Wykorzystałem 3 najważniejsze dane do stworzenia hashCode czyli Id, Opis i status
     @Override
     public int hashCode() {
-        return 0;
+        return Objects.hash(id, description, status);
     }
 }

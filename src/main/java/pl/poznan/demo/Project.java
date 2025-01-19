@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,9 @@ public class Project {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Task> tasks = List.of();
+
+    //zmiana na mutowalną/Zmienną listę wydaje mi się to bardziej logiczne
+    private List<Task> tasks = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -30,8 +33,10 @@ public class Project {
         this.id = id;
     }
 
+
+    // poprawienie "zwrotu" z metody gdyż ValueOf nie jest tutaj potrzebne gdyż "name" jest Stringiem i nie ma potrzeby wykorzystywania skomplikowanej funkcji ValueOf.
     public String getName() {
-        return String.valueOf(name).toLowerCase();
+        return name.toLowerCase();
     }
 
     public List<Task> getTasks() {
