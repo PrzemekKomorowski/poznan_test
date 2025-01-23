@@ -15,14 +15,12 @@ import java.util.List;
 public class Project {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Przykład: można wrócić do IDENTITY jeśli nie masz sekwencji
     private Long id;
 
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-
-    //zmiana na mutowalną/Zmienną listę wydaje mi się to bardziej logiczne
     private List<Task> tasks = new ArrayList<>();
 
     public Long getId() {
@@ -33,10 +31,12 @@ public class Project {
         this.id = id;
     }
 
-
-    // poprawienie "zwrotu" z metody gdyż ValueOf nie jest tutaj potrzebne gdyż "name" jest Stringiem i nie ma potrzeby wykorzystywania skomplikowanej funkcji ValueOf.
     public String getName() {
-        return name.toLowerCase();
+        return name; // Jeśli chcesz przechowywać nazwę oryginalną, zwróć ją bez zmiany
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Task> getTasks() {
@@ -44,7 +44,6 @@ public class Project {
     }
 
     public void setTasks(List<Task> tasks) {
-        this.tasks.clear();
-        this.tasks.addAll(tasks);
+        this.tasks = new ArrayList<>(tasks); // Użycie nowej listy, bez potrzeby wywoływania clear()
     }
 }

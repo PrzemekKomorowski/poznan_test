@@ -46,13 +46,12 @@ public class Task {
         return Objects.equals(id, task.id) && Objects.equals(description, task.description) && status == task.status;
     }
 
-    // Hashcode nie powinno zawsze zwracać 0. Bo nie ma wtedy sensu stosowania tej metody, ponieważ wtedy wszystkie wartości są sobie równe po porównaniu na podstawie hashcode.
-    // Wykorzystałem 3 najważniejsze dane do stworzenia hashcode, czyli Id, Opis i status
     @Override
     public int hashCode() {
         return Objects.hash(id, description, status);
     }
 }
+
 
 
 /*
