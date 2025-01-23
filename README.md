@@ -12,6 +12,8 @@ Klasa Task
 - Zdjąłem komentarz z `Settera Description`
 - Poprawiłem implementację `hashCode` aby nie zwracał 0 tylko unikalną wartość. Aby w przypadku porównywania nie "wrzucał wszystkich Tasków to jednego worka"
 
+- Końcowo usunąłem gettery i settery, żeby uprościc kod i użyłem lomboka.
+
 Klasa Project
 - 
 - Uprościłem metodę `getName` kasując `String.valueOf`, gdyż jest tam niepotrzebnie wywołany
@@ -19,6 +21,8 @@ Klasa Project
 
 Dodatkowa notatka:
 
-Zauważyłem że klasa `TASK` nie posiada konstruktora, lecz jeśli wszystkie taski są pobierane z REST API uznałem, że nie ma potrzeby tworzenia go.
+Rozbudowałem kilka funkcjonalności jak możliwość wyszukiwania tasków po Statusie Taska, Dacie, Opisie czy ID.
 
-Jeśli chodzi o `ProjectController`, nie zobaczyłem jakiegoś konkretnego błędu, lecz zastanowiłbym się nad rozbudowaniem struktury.
+Niestety ze względów prywatnych nie jestem wstanie wykonać testów ani sam nie sprawdziłem w pełni aplikacji, dlatego zostaje ona w obecnym stadium.
+
+
